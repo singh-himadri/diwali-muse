@@ -69,16 +69,16 @@ export default function App() {
 
   const triggerFirework = () => {
     const x = window.innerWidth * (0.2 + Math.random() * 0.6);
-    const y = window.innerHeight * (0.2 + Math.random() * 0.35);
+    const y = window.innerHeight * (0.15 + Math.random() * 0.3);
     sound.playFireworkBurst('peony');
   };
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#05060b] text-[#f7e7ce] flex flex-col items-center justify-between font-sans select-none">
+    <main className="relative w-full h-[100dvh] min-h-[100dvh] overflow-hidden bg-[#05060b] text-[#f7e7ce] flex flex-col justify-between font-sans select-none">
       {/* 1. Dynamic Celestial Background Canvas */}
       <StarryCanvas isLit={phase !== PHASES.UNLIT} />
 
-      {/* 2. Interactive 60fps Fireworks & Sparkler Layer */}
+      {/* 2. Interactive 60fps Fireworks & Sparkler Layer (Z-35, visible on mobile & desktop) */}
       <FireworksCanvas
         active={phase === PHASES.CELEBRATION}
         autoBarrage={autoBarrage}
@@ -86,11 +86,11 @@ export default function App() {
       />
 
       {/* 3. Top Navigation & Music Controls */}
-      <header className="relative z-40 w-full px-5 pt-5 md:px-10 flex items-center justify-between">
+      <header className="relative z-40 w-full px-3 pt-3 sm:px-8 sm:pt-5 flex items-center justify-between shrink-0">
         {/* Brand / Title Indicator */}
-        <div className="flex items-center gap-2.5 bg-stone-950/40 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-amber-500/20 shadow-sm">
-          <div className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_#f59e0b]" />
-          <span className="text-xs md:text-sm font-cinzel font-bold text-amber-200 tracking-wider uppercase">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 bg-stone-950/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-amber-500/25 shadow-sm">
+          <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#f59e0b]" />
+          <span className="text-[11px] sm:text-sm font-cinzel font-bold text-amber-200 tracking-wider uppercase truncate max-w-[190px] sm:max-w-none">
             Deepavali ✨ For {wish.to}
           </span>
         </div>
@@ -99,11 +99,11 @@ export default function App() {
         <MusicController />
       </header>
 
-      {/* 4. Main Stage Area */}
-      <div className="relative z-30 flex-1 w-full flex flex-col items-center justify-center px-4">
+      {/* 4. Main Stage Area: Responsive container with min-h-0 and auto overflow so nothing ever gets cut off */}
+      <div className="relative z-30 flex-1 w-full flex flex-col items-center justify-center px-2 sm:px-4 min-h-0 overflow-y-auto my-auto py-1">
         {/* Step 1 & 2: Diya Scene */}
         {(phase === PHASES.UNLIT || phase === PHASES.LIT || phase === PHASES.RANGOLI) && (
-          <div className="relative flex flex-col items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center max-w-full">
             {/* Rangoli sits underneath the Diya */}
             <div className="absolute inset-0 flex items-center justify-center -z-10 pointer-events-auto">
               <RangoliCanvas
@@ -122,16 +122,16 @@ export default function App() {
 
             {/* Prompt for Step 2 -> 3: Draw Rangoli */}
             {phase === PHASES.LIT && (
-              <div className="mt-8 flex flex-col items-center animate-fade-in">
+              <div className="mt-5 sm:mt-8 flex flex-col items-center animate-fade-in">
                 <button
                   onClick={handleDrawRangoli}
-                  className="group flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-stone-950 font-cinzel font-bold text-xs md:text-sm tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.65)] hover:scale-105 active:scale-95 transition-all"
+                  className="group flex items-center gap-2 px-5 py-2.5 sm:px-7 sm:py-3 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-stone-950 font-cinzel font-bold text-xs sm:text-sm tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.65)] hover:scale-105 active:scale-95 transition-all"
                 >
-                  <Sparkles className="w-4 h-4 text-stone-950" />
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-950" />
                   <span>Blossom Sacred Rangoli</span>
-                  <ChevronRight className="w-4 h-4 text-stone-950 group-hover:translate-x-1 transition-transform" />
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-950 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <span className="text-xs text-amber-200/60 mt-1.5 font-sans">
+                <span className="text-[10px] sm:text-xs text-amber-200/60 mt-1 font-sans">
                   (Tap to unfurl golden geometric light around the Diya)
                 </span>
               </div>
@@ -139,16 +139,16 @@ export default function App() {
 
             {/* Prompt for Step 3 -> 4: Release Sky Lantern */}
             {phase === PHASES.RANGOLI && (
-              <div className="mt-8 flex flex-col items-center animate-fade-in">
+              <div className="mt-5 sm:mt-8 flex flex-col items-center animate-fade-in">
                 <button
                   onClick={handleGoToLantern}
-                  className="group flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-stone-950 font-cinzel font-bold text-xs md:text-sm tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.65)] hover:scale-105 active:scale-95 transition-all"
+                  className="group flex items-center gap-2 px-5 py-2.5 sm:px-7 sm:py-3 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-stone-950 font-cinzel font-bold text-xs sm:text-sm tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.65)] hover:scale-105 active:scale-95 transition-all"
                 >
-                  <Heart className="w-4 h-4 text-stone-950 fill-stone-950" />
+                  <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-950 fill-stone-950" />
                   <span>Release Our Sky Lantern</span>
-                  <ChevronRight className="w-4 h-4 text-stone-950 group-hover:translate-x-1 transition-transform" />
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-950 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <span className="text-xs text-amber-200/60 mt-1.5 font-sans">
+                <span className="text-[10px] sm:text-xs text-amber-200/60 mt-1 font-sans">
                   (Tap or swipe the rangoli to scatter fresh flower petals 🌸)
                 </span>
               </div>
@@ -178,15 +178,15 @@ export default function App() {
       </div>
 
       {/* 5. Bottom Interactive Story Stepper & Reset Controls */}
-      <footer className="relative z-40 w-full px-5 pb-5 md:px-10 flex items-center justify-between">
+      <footer className="relative z-40 w-full px-3 pb-3 sm:px-8 sm:pb-5 flex items-center justify-between shrink-0 gap-2">
         {/* Story Stepper Dots */}
-        <div className="flex items-center gap-1.5 bg-stone-950/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-amber-500/25 shadow-sm">
+        <div className="flex items-center gap-1 bg-stone-950/60 backdrop-blur-md px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-amber-500/25 shadow-sm">
           {[
             { id: PHASES.UNLIT, label: '1. Diya' },
             { id: PHASES.RANGOLI, label: '2. Rangoli' },
             { id: PHASES.LANTERN, label: '3. Lantern' },
-            { id: PHASES.CELEBRATION, label: '4. Envelope & Wish' }
-          ].map((s, idx) => {
+            { id: PHASES.CELEBRATION, label: '4. Envelope' }
+          ].map((s) => {
             const isActive =
               (s.id === PHASES.UNLIT && (phase === PHASES.UNLIT || phase === PHASES.LIT)) ||
               (s.id === PHASES.RANGOLI && phase === PHASES.RANGOLI) ||
@@ -200,7 +200,7 @@ export default function App() {
                   sound.ensureContext();
                   setPhase(s.id === PHASES.UNLIT ? PHASES.LIT : s.id);
                 }}
-                className={`text-[11px] font-cinzel font-semibold px-2.5 py-1 rounded-full transition-all ${
+                className={`text-[9.5px] sm:text-[11px] font-cinzel font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full transition-all ${
                   isActive
                     ? 'bg-amber-500/35 text-amber-200 border border-amber-400/60 shadow-[0_0_8px_rgba(245,158,11,0.4)]'
                     : 'text-stone-400 hover:text-amber-200'
@@ -212,16 +212,16 @@ export default function App() {
           })}
         </div>
 
-        {/* Quick Restart or Sparkler Tip */}
-        <div className="flex items-center gap-3">
+        {/* Quick Restart */}
+        <div className="flex items-center gap-2">
           {phase === PHASES.CELEBRATION && (
-            <span className="text-[11px] text-amber-300/70 font-sans hidden sm:inline">
-              ✨ Tap anywhere in the sky to burst fireworks!
+            <span className="text-[10px] sm:text-[11px] text-amber-300/70 font-sans hidden md:inline">
+              ✨ Tap anywhere to burst fireworks!
             </span>
           )}
           <button
             onClick={handleReset}
-            className="p-2 rounded-full bg-stone-950/60 border border-amber-500/30 text-amber-300/80 hover:text-amber-100 hover:border-amber-400/70 backdrop-blur-md transition-all shadow-sm"
+            className="p-1.5 sm:p-2 rounded-full bg-stone-950/60 border border-amber-500/30 text-amber-300/80 hover:text-amber-100 hover:border-amber-400/70 backdrop-blur-md transition-all shadow-sm"
             title="Relive Experience from the Beginning"
           >
             <RefreshCw className="w-3.5 h-3.5" />
