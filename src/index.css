@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cinzel: 'Cinzel', serif;
+    --font-decorative: 'Cinzel Decorative', serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-handwriting: 'Alex Brush', cursive;
+    --font-sans: 'Outfit', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #05060b;
+    color: #f7e7ce;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+  }
+}
+
+.font-decorative {
+  font-family: var(--font-decorative);
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-serif-festive {
+  font-family: var(--font-serif);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+/* 3D Envelope utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Gold glow effects */
+.gold-glow {
+  filter: drop-shadow(0 0 16px rgba(255, 185, 55, 0.65)) drop-shadow(0 0 38px rgba(255, 120, 0, 0.4));
+}
+
+.gold-glow-lg {
+  filter: drop-shadow(0 0 28px rgba(255, 195, 65, 0.85)) drop-shadow(0 0 70px rgba(255, 105, 0, 0.55));
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fffbeb 0%, #fde047 25%, #f59e0b 60%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-rose-gold {
+  background: linear-gradient(135deg, #fff1f2 0%, #fda4af 35%, #f43f5e 75%, #be123c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Parchment Letter Paper Styling */
+.parchment-paper {
+  background: radial-gradient(circle at 50% 30%, #fffdfa 0%, #fbf5ea 60%, #f4ead5 100%);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(217, 119, 6, 0.3),
+    inset 0 0 35px rgba(217, 119, 6, 0.08);
+}
+
+/* Gold shimmer animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 0, 0) 0%,
+    rgba(255, 235, 150, 0.6) 50%,
+    rgba(255, 215, 0, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: goldShimmer 3.5s infinite linear;
+}
+
+/* Natural Organic Candle Flame */
+@keyframes flameDance {
+  0%, 100% {
+    transform: scale(1) rotate(-1.5deg) skewX(-1deg);
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+  }
+  20% {
+    transform: scale(1.05, 0.95) rotate(1.8deg) skewX(1deg);
+  }
+  45% {
+    transform: scale(0.96, 1.04) rotate(-0.8deg) skewX(-1.5deg);
+    border-radius: 46% 54% 24% 24% / 56% 64% 36% 36%;
+  }
+  70% {
+    transform: scale(1.03, 0.97) rotate(1.2deg) skewX(0.8deg);
+  }
+  85% {
+    transform: scale(0.98, 1.02) rotate(-1deg) skewX(-0.5deg);
+  }
+}
+
+@keyframes auraBreath {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.95;
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(1deg);
+  }
+}
+
+@keyframes rippleShockwave {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.animate-flame-dance {
+  animation: flameDance 2.4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.animate-aura-breath {
+  animation: auraBreath 2.6s ease-in-out infinite;
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 4.2s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: rippleShockwave 2.2s ease-out infinite;
+}
+
+/* Custom aesthetic scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(12, 10, 16, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.8);
+}
