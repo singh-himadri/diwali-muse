@@ -71,11 +71,10 @@ export default function EnvelopeLetter({
           {/* Main 3D Envelope Container */}
           <div
             onClick={handleOpenEnvelope}
-            className={`relative w-full max-w-[340px] sm:max-w-[390px] aspect-[1.5/1] cursor-pointer transition-all duration-700 transform-style-3d ${
-              envelopeState === 'sealed'
+            className={`relative w-full max-w-[340px] sm:max-w-[390px] aspect-[1.5/1] cursor-pointer transition-all duration-700 transform-style-3d ${envelopeState === 'sealed'
                 ? 'hover:scale-[1.02] active:scale-95'
                 : ''
-            }`}
+              }`}
           >
             {/* Ambient Envelope Glow */}
             <div className="absolute -inset-3 bg-gradient-to-r from-amber-600/20 via-rose-600/25 to-amber-600/20 rounded-3xl blur-xl -z-10 animate-aura-breath" />
@@ -87,13 +86,12 @@ export default function EnvelopeLetter({
 
             {/* Letter peek sliding out */}
             <div
-              className={`absolute inset-x-3 sm:inset-x-5 top-2 h-36 sm:h-44 rounded-xl parchment-paper p-3 sm:p-4 text-stone-900 transition-all duration-700 ease-out shadow-md z-10 ${
-                envelopeState === 'opened'
+              className={`absolute inset-x-3 sm:inset-x-5 top-2 h-36 sm:h-44 rounded-xl parchment-paper p-3 sm:p-4 text-stone-900 transition-all duration-700 ease-out shadow-md z-10 ${envelopeState === 'opened'
                   ? '-translate-y-24 sm:-translate-y-28 opacity-100 scale-105'
                   : envelopeState === 'unsealing'
-                  ? '-translate-y-16 opacity-90'
-                  : 'translate-y-1 opacity-0'
-              }`}
+                    ? '-translate-y-16 opacity-90'
+                    : 'translate-y-1 opacity-0'
+                }`}
             >
               <div className="text-center border-b border-amber-900/20 pb-1">
                 <span className="text-[9px] sm:text-[10px] font-cinzel tracking-widest text-amber-800 uppercase font-bold">
@@ -169,11 +167,10 @@ export default function EnvelopeLetter({
 
             {/* Top Triangular Flap */}
             <div
-              className={`absolute top-0 inset-x-0 h-1/2 origin-top transition-transform duration-700 ease-in-out z-30 transform-style-3d ${
-                envelopeState !== 'sealed'
+              className={`absolute top-0 inset-x-0 h-1/2 origin-top transition-transform duration-700 ease-in-out z-30 transform-style-3d ${envelopeState !== 'sealed'
                   ? '-rotate-x-180 pointer-events-none'
                   : 'rotate-x-0'
-              }`}
+                }`}
               style={{
                 clipPath: 'polygon(0% 0%, 100% 0%, 50% 100%)'
               }}
@@ -185,11 +182,10 @@ export default function EnvelopeLetter({
 
             {/* Realistic 3D Wax Seal */}
             <div
-              className={`absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 transition-all duration-500 ${
-                envelopeState !== 'sealed'
+              className={`absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 transition-all duration-500 ${envelopeState !== 'sealed'
                   ? 'opacity-0 scale-125 pointer-events-none'
                   : 'opacity-100 scale-100 hover:scale-110 active:scale-95'
-              }`}
+                }`}
             >
               <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-red-950 via-red-600 to-amber-600 border-2 border-amber-300/90 shadow-[0_4px_16px_rgba(0,0,0,0.8),_inset_0_2px_4px_rgba(255,255,255,0.4)] flex flex-col items-center justify-center">
                 <div className="absolute -inset-1 rounded-full border border-red-700/50 -z-10 animate-pulse" />
@@ -286,13 +282,12 @@ export default function EnvelopeLetter({
                   <button
                     key={idx}
                     onClick={() => handleLightReason(idx)}
-                    className={`flex flex-col items-center justify-between p-1.5 sm:p-2.5 rounded-xl border transition-all duration-300 ${
-                      isSelected
+                    className={`flex flex-col items-center justify-between p-1.5 sm:p-2.5 rounded-xl border transition-all duration-300 ${isSelected
                         ? 'bg-amber-100 border-amber-600 shadow-[0_0_12px_rgba(245,158,11,0.5)] scale-105'
                         : isLit
-                        ? 'bg-amber-50/80 border-amber-400/50 hover:bg-amber-100/60'
-                        : 'bg-stone-100/60 border-stone-300 opacity-60 hover:opacity-100'
-                    }`}
+                          ? 'bg-amber-50/80 border-amber-400/50 hover:bg-amber-100/60'
+                          : 'bg-stone-100/60 border-stone-300 opacity-60 hover:opacity-100'
+                      }`}
                   >
                     {/* Flame */}
                     <div className="h-4 sm:h-5 flex items-end justify-center mb-0.5">
@@ -356,11 +351,10 @@ export default function EnvelopeLetter({
             <div className="flex items-center gap-1.5 sm:gap-2">
               <button
                 onClick={onToggleSparkler}
-                className={`flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-cinzel font-bold transition-all shadow-sm ${
-                  sparklerActive
+                className={`flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-cinzel font-bold transition-all shadow-sm ${sparklerActive
                     ? 'bg-amber-500 text-stone-950 shadow-[0_0_12px_#f59e0b]'
                     : 'bg-stone-900 text-amber-200 hover:bg-stone-800'
-                }`}
+                  }`}
                 title="Hold and move your finger to burn a sparkler!"
               >
                 <Wand2 className="w-3 h-3" />
@@ -375,14 +369,6 @@ export default function EnvelopeLetter({
                 <span>Burst Rocket 🚀</span>
               </button>
             </div>
-
-            <button
-              onClick={onOpenCustomizer}
-              className="flex items-center gap-1 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-cinzel font-bold bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:brightness-110 shadow-md transition-all"
-            >
-              <Edit3 className="w-3 h-3" />
-              <span>Personalize & Share</span>
-            </button>
           </div>
         </div>
       )}
